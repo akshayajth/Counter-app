@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from "react";
+import './App.css';
+import React from "react";
 import CounterDisplay from "./components/CounterDisplay";
 import CounterControls from "./components/CounterControls";
 import Input from "./components/Input";
 import "./styles/CounterApp.css";
 
+//Main file integrates all components
+const App = () => {
+  return (
+    <div className="app-container">
+      <h1 className="title">Counter App</h1>
+      <Counter />
+    </div>
+  );
+};
+
 const Counter = () => {
-  const [count, setCount] = useState(() => {
-    // Retrieve count from localStorage or set to 0
-    return Number(localStorage.getItem("count")) || 0;
-  });
-  const [step, setStep] = useState(() => {
-    // Retrieve step from localStorage or set to 1
-    return Number(localStorage.getItem("step")) || 1;
-  });
+  const [count, setCount] = React.useState(0);
+  const [step, setStep] = React.useState(1);
 
-  useEffect(() => {
-    // Save count and step to localStorage whenever they change
-    localStorage.setItem("count", count);
-    localStorage.setItem("step", step);
-  }, [count, step]);
-
+  
   const increment = () => setCount(count + step);
   const decrement = () => setCount(count - step);
   const reset = () => setCount(0);
@@ -38,4 +38,6 @@ const Counter = () => {
   );
 };
 
-export default Counter;
+
+
+export default App;
